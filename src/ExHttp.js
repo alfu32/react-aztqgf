@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export function MyComponent() {
+export function ExHttp() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
