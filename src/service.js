@@ -24,10 +24,12 @@ export async function fetchList() {
 }
 /*
 GET https://reqres.in/api/users?page=2
-GET https://reqres.in/api/users/${id}
+GET https://reqres.in/api/users/
 GET https://reqres.in/api/users/${id}
 GET https://reqres.in/api/i-t-e-m-s/
 GET https://reqres.in/api/i-t-e-m-s/${id}
+create POST https://reqres.in/api/users/
+update PUT https://reqres.in/api/users/
  */
 export async function reqres(fName) {
   const url = 'https://reqres.in/api/' + fName + '/';
