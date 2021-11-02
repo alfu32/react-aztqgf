@@ -9,7 +9,7 @@ export function ExHttp() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch('https://api.example.com/items')
+    fetch('https://mtest.free.beeceptor.com/items')
       .then((res) => res.json())
       .then(
         (result) => {
