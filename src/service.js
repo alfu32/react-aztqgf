@@ -22,3 +22,8 @@ export async function fetchList() {
     res.json()
   );
 }
+export async function reqres(fName) {
+  return fetch('https://reqres.in/api/' + fName + '/').then((res) =>
+    res.json()
+  );
+}

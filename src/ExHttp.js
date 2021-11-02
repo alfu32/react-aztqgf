@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchFakeList, fetchList } from './service';
+import { reqres, fetchFakeList, fetchList } from './service';
 
 export function ExHttp() {
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ export function ExHttp() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetchFakeList().then(
+    reqres('products').then(
       (result) => {
         cosole.log(result);
         setIsLoaded(true);
