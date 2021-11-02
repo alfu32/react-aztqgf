@@ -24,9 +24,10 @@ export async function fetchList() {
 }
 /*
 GET https://reqres.in/api/users?page=2
-GET https://reqres.in/api/users/2
-GET https://reqres.in/api/users/999
-GET https://reqres.in/api/users/999
+GET https://reqres.in/api/users/${id}
+GET https://reqres.in/api/users/${id}
+GET https://reqres.in/api/i-t-e-m-s/
+GET https://reqres.in/api/i-t-e-m-s/${id}
  */
 export async function reqres(fName) {
   const url = 'https://reqres.in/api/' + fName + '/';
