@@ -9,21 +9,17 @@ export function ExHttp() {
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
-  useEffect(() => {
-    reqres('products').then(
-      (result) => {
-        cosole.log(result);
-        setIsLoaded(true);
-        setItems(result);
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+  useEffect(async () => {
+    let result = null;
+    try {
+      result = await reqres('products');
+      console.log(result);
+      setIsLoaded(true);
+      setItems(result.data);
+    } catch (error) {
+      setIsLoaded(true);
+      setError(error);
+    }
   }, []);
 
   if (error) {

@@ -23,7 +23,10 @@ export async function fetchList() {
   );
 }
 export async function reqres(fName) {
-  return fetch('https://reqres.in/api/' + fName + '/').then((res) =>
-    res.json()
-  );
+  const url = 'https://reqres.in/api/' + fName + '/';
+  console.log('fetching ' + url);
+  const res = await fetch(url);
+  const json = await res.json();
+  console.log(json);
+  return json;
 }
