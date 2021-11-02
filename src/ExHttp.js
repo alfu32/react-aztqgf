@@ -35,7 +35,7 @@ export function ExHttp() {
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            {item.name} {item.price}
+            {item.name} <small>{item.price}eur</small>
           </li>
         ))}
       </ul>
