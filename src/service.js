@@ -48,7 +48,7 @@ export async function reqres(fName) {
   return json;
 }
 
-export async function factoryMockApi(endpointName) {
+export async function factoryMockApi(token,endpointName) {
   const baseUrl = 'https://6180fc328bfae60017adfd31.mockapi.io/api/v1/'+endpointName+'/';
   const getMany=baseUrl;
   const getById=baseUrl+'/';
@@ -69,6 +69,9 @@ export async function factoryMockApi(endpointName) {
     },
     update:async (item)=>{
       return req('POST',baseUrl,item)
+    },
+    delete:async (item)=>{
+      return req('DELETE',baseUrl,item)
     },
 
   }
