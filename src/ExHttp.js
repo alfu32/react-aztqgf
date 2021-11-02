@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {fetchFakeList,fetchList} from './service';
 
 export function ExHttp() {
   const [error, setError] = useState(null);
@@ -9,9 +10,7 @@ export function ExHttp() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch('https://mtest.free.beeceptor.com/items')
-      .then((res) => res.json())
-      .then(
+    fetchList().then(
         (result) => {
           setIsLoaded(true);
           setItems(result);
