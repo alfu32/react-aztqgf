@@ -52,18 +52,24 @@ export async function factoryMockApi(endpointName) {
   const baseUrl = 'https://6180fc328bfae60017adfd31.mockapi.io/api/v1/'+endpointName+'/';
   const getMany=baseUrl;
   const getById=baseUrl+'/';
-  function req(url){
+  async function req(method,url,body){
     console.log('fetching ' + url);
-    const res = await fetch(url,{method:'GET'});
+    const res = await fetch(url,{method,body});
     const json = await res.json();
     console.log(json);
     return json;
   }
   return {
-    all:async ()=>req('GET',baseUrl),
+    all:async ()=>req('GET',baseUrl,null),
     one:async (id)=>{
-      return req('GET',baseUrl + '' + id)
+      return req('GET',baseUrl + '' + id,null)
     },
-    
+    create:async (item)=>{
+      return req('PUT',baseUrl,item)
+    },
+    update:async (item)=>{
+      return req('POST',baseUrl,item)
+    },
+
   }
 }
