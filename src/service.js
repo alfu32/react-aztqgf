@@ -25,6 +25,8 @@ export async function fetchList() {
 /*
 GET https://reqres.in/api/users?page=2
 GET https://reqres.in/api/users/2
+GET https://reqres.in/api/users/999
+GET https://reqres.in/api/users/999
  */
 export async function reqres(fName) {
   const url = 'https://reqres.in/api/' + fName + '/';
