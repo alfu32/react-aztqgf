@@ -12,7 +12,10 @@ export function ExHttp() {
   useEffect(async () => {
     let result = null;
     try {
-      result = await factoryMockApi('products').get();
+      result = await factoryMockApi(
+        '6180fc328bfae60017adfd31',
+        'products'
+      ).all();
       console.log(result);
       setIsLoaded(true);
       setItems(result.data);
