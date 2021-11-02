@@ -71,7 +71,7 @@ export async function factoryMockApi(token, endpointName) {
     update: async (item) => {
       return req('POST', baseUrl, item);
     },
-    delete: async (item) => {
+    del: async (item) => {
       return req('DELETE', baseUrl + '/' + id, null);
     },
   };
