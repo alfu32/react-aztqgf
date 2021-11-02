@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { reqres, fetchFakeList, fetchList } from './service';
+import { factoryMockApi, reqres, fetchFakeList, fetchList } from './service';
 
 export function ExHttp() {
   const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ export function ExHttp() {
   useEffect(async () => {
     let result = null;
     try {
-      result = await reqres('products');
+      result = await factoryMockApi('products').get();
       console.log(result);
       setIsLoaded(true);
       setItems(result.data);
