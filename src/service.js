@@ -35,6 +35,9 @@ delete DELETE https://reqres.in/api/users/
 register POST https://reqres.in/api/register/
 login POST https://reqres.in/api/login/
 logout POST https://reqres.in/api/logout/
+
+add ?delay=<seconds> to delay the answer
+add ?page=<pagenum> to ge a page
  */
 export async function reqres(fName) {
   const url = 'https://reqres.in/api/' + fName + '/';
