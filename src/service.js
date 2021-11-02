@@ -22,6 +22,10 @@ export async function fetchList() {
     res.json()
   );
 }
+/*
+GET https://reqres.in/api/users?page=2
+GET https://reqres.in/api/users/2
+ */
 export async function reqres(fName) {
   const url = 'https://reqres.in/api/' + fName + '/';
   console.log('fetching ' + url);
