@@ -32,6 +32,7 @@ create POST https://reqres.in/api/users/
 update PUT https://reqres.in/api/users/
 update PATCH https://reqres.in/api/users/
 delete DELETE https://reqres.in/api/users/
+register POST https://reqres.in/api/register/
  */
 export async function reqres(fName) {
   const url = 'https://reqres.in/api/' + fName + '/';
