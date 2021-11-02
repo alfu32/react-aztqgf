@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export async function fetchFakeList() {
   let payload = {
     token: 'BNd220_TwvnMTdgHRxyZ_w',

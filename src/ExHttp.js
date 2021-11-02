@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {fetchFakeList,fetchList} from './service';
+import { fetchFakeList, fetchList } from './service';
 
 export function ExHttp() {
   const [error, setError] = useState(null);
@@ -10,19 +10,20 @@ export function ExHttp() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetchList().then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    fetchFakeList().then(
+      (result) => {
+        cosole.log(result);
+        setIsLoaded(true);
+        setItems(result);
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
   }, []);
 
   if (error) {
