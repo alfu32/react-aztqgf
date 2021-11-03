@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { factoryMockApi, reqres, fetchFakeList, fetchList } from './service';
+import './style.css';
 
 export function ExHttp() {
   const [error, setError] = useState(null);
@@ -31,11 +32,16 @@ export function ExHttp() {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul>
+      <ul className="table">
         {items.map((item) => (
-          <li key={item.id}>
-            {item.name} <small>{item.price}eur</small>
-          </li>
+          <>
+            <li className="row" key={item.id}>
+              <big className="cell">{item.productName}</big>
+            </li>
+            <li className="row" key={item.id}>
+              <small className="cell">{item.unitPrice}eur</small>
+            </li>
+          </>
         ))}
       </ul>
     );
