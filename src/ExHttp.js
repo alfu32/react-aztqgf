@@ -31,6 +31,11 @@ export function ExHttp() {
     newCart[item.catalogItem.id].quantity += 1;
     setCart(newCart);
   };
+  const clearCart = () => {
+    if (confirm(`remove all items from cart ?`)) {
+      setCart([]);
+    }
+  };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -74,7 +79,7 @@ export function ExHttp() {
             <th className="cell">quantity[pcs]</th>
             <th className="cell">total[eur]</th>
             <th>
-              <button onClick={() => addProductToCart(item)}>empty</button>
+              <button onClick={() => clearCart()}>empty</button>
             </th>
           </tr>
           {Object.values(cart).map((item) => (
