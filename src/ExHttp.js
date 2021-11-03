@@ -18,7 +18,7 @@ export function ExHttp() {
       ).all();
       console.log(result);
       setIsLoaded(true);
-      setItems(result.data);
+      setItems(Array.prototype.slice.call(result));
     } catch (error) {
       setIsLoaded(true);
       setError(error);

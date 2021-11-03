@@ -48,7 +48,7 @@ export async function reqres(fName) {
   return json;
 }
 
-export async function factoryMockApi(token, endpointName) {
+export function factoryMockApi(token, endpointName) {
   const baseUrl =
     'https://6180fc328bfae60017adfd31.mockapi.io/api/v1/' + endpointName + '/';
   console.log(baseUrl);
