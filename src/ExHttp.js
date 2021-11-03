@@ -42,10 +42,10 @@ export function ExHttp() {
   useEffect(async () => {
     let result = null;
     try {
-      result = await factoryMockApi(
+      result = await (factoryMockApi(
         '6180fc328bfae60017adfd31',
         'products'
-      ).all();
+      ).all());
       console.log(result);
       setIsLoaded(true);
       setCatalog(Array.prototype.slice.call(result));
