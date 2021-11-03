@@ -5,8 +5,15 @@ import './style.css';
 export function ExHttp() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-
+  const [catalog, setCatalog] = useState([]);
+  const [cart, setCart] = useState({});
+  const addProductToCart = (catalogItem) => {
+    const newCart = { ...cart };
+    newCart[catalogItem.id] = {
+      catalogItem,
+      quantity: (newCart[catalogItem.id] || { quantity: 0 }).quantity + 1,
+    };
+  };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -19,7 +26,7 @@ export function ExHttp() {
       ).all();
       console.log(result);
       setIsLoaded(true);
-      setItems(Array.prototype.slice.call(result));
+      setCatalog(Array.prototype.slice.call(result));
     } catch (error) {
       setIsLoaded(true);
       setError(error);
@@ -32,18 +39,44 @@ export function ExHttp() {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul className="table">
-        {items.map((item) => (
           <>
-            <li className="row" key={item.id}>
-              <big className="cell">{item.productName}</big>
-            </li>
-            <li className="row" key={item.id}>
-              <small className="cell">{item.unitPrice}eur</small>
-            </li>
+          <h4>Cart</h4>
+      <table className="table">
+        {Object.values(cart).map((item) => (
+          <>
+            <tr className="row" key={'a' + item.id}>
+              <td className="cell">{item.productName}</td>
+              <td rowSpan={2}>
+                <button onClick={() => addProductToCart(item)}>
+                  add to cart
+                </button>
+              </td>
+            </tr>
+            <tr className="row" key={'b' + item.id}>
+              <td className="cell">{item.unitPrice}eur</td>
+            </tr>
           </>
         ))}
-      </ul>
+      </table>
+      <h4>Catalog</h4>
+      <table className="table">
+        {catalog.map((item) => (
+          <>
+            <tr className="row" key={'a' + item.id}>
+              <td className="cell">{item.productName}</td>
+              <td rowSpan={2}>
+                <button onClick={() => addProductToCart(item)}>
+                  add to cart
+                </button>
+              </td>
+            </tr>
+            <tr className="row" key={'b' + item.id}>
+              <td className="cell">{item.unitPrice}eur</td>
+            </tr>
+          </>
+        ))}
+      </table>
+          </>
     );
   }
 }
