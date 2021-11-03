@@ -13,6 +13,7 @@ export function ExHttp() {
       catalogItem,
       quantity: (newCart[catalogItem.id] || { quantity: 0 }).quantity + 1,
     };
+    setCart(newCart);
   };
   // Note: the empty deps array [] means
   // this useEffect will run once
@@ -39,44 +40,44 @@ export function ExHttp() {
     return <div>Loading...</div>;
   } else {
     return (
-          <>
-          <h4>Cart</h4>
-      <table className="table">
-        {Object.values(cart).map((item) => (
-          <>
-            <tr className="row" key={'a' + item.id}>
-              <td className="cell">{item.productName}</td>
-              <td rowSpan={2}>
-                <button onClick={() => addProductToCart(item)}>
-                  add to cart
-                </button>
-              </td>
-            </tr>
-            <tr className="row" key={'b' + item.id}>
-              <td className="cell">{item.unitPrice}eur</td>
-            </tr>
-          </>
-        ))}
-      </table>
-      <h4>Catalog</h4>
-      <table className="table">
-        {catalog.map((item) => (
-          <>
-            <tr className="row" key={'a' + item.id}>
-              <td className="cell">{item.productName}</td>
-              <td rowSpan={2}>
-                <button onClick={() => addProductToCart(item)}>
-                  add to cart
-                </button>
-              </td>
-            </tr>
-            <tr className="row" key={'b' + item.id}>
-              <td className="cell">{item.unitPrice}eur</td>
-            </tr>
-          </>
-        ))}
-      </table>
-          </>
+      <>
+        <h4>Cart</h4>
+        <table className="table">
+          {Object.values(cart).map((item) => (
+            <>
+              <tr className="row" key={'0' + item.catalogItem.id}>
+                <td className="cell">{item.catalogItem.productName}</td>
+                <td className="cell">{item.catalogItem.unitPrice}eur</td>
+                <td className="cell">{item.quantity}pcs</td>
+                <td className="cell">
+                  {item.quantity * item.catalogItem.unitPrice}eur
+                </td>
+                <td>
+                  <button onClick={() => addProductToCart(item)}>remove</button>
+                </td>
+              </tr>
+            </>
+          ))}
+        </table>
+        <h4>Catalog</h4>
+        <table className="table">
+          {catalog.map((item) => (
+            <>
+              <tr className="row" key={'a' + item.id}>
+                <td className="cell">{item.productName}</td>
+                <td rowSpan={2}>
+                  <button onClick={() => addProductToCart(item)}>
+                    add to cart
+                  </button>
+                </td>
+              </tr>
+              <tr className="row" key={'b' + item.id}>
+                <td className="cell">{item.unitPrice}eur</td>
+              </tr>
+            </>
+          ))}
+        </table>
+      </>
     );
   }
 }
