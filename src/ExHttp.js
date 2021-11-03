@@ -26,6 +26,11 @@ export function ExHttp() {
     }
     setCart(newCart);
   };
+  const increaseQuantity = (item) => {
+    const newCart = { ...cart };
+    newCart[item.catalogItem.id].quantity += 1;
+    setCart(newCart);
+  };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -83,6 +88,9 @@ export function ExHttp() {
                 </td>
                 <td>
                   <button onClick={() => removeProductFromCart(item)}>-</button>
+                </td>
+                <td>
+                  <button onClick={() => increaseQuantity(item)}>+</button>
                 </td>
               </tr>
             </>
