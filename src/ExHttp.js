@@ -42,10 +42,10 @@ export function ExHttp() {
   useEffect(async () => {
     let result = null;
     try {
-      result = await (factoryMockApi(
+      result = await factoryMockApi(
         '6180fc328bfae60017adfd31',
         'products'
-      ).all());
+      ).all();
       console.log(result);
       setIsLoaded(true);
       setCatalog(Array.prototype.slice.call(result));
@@ -100,9 +100,9 @@ export function ExHttp() {
           ))}
           <tr>
             <th>total</th>
-            <th>{total.avg}</th>
-            <th>{total.pcs}</th>
-            <th>{total.price}</th>
+            <th>{total.avg}eur/pc</th>
+            <th>{total.pcs}pcs</th>
+            <th>{total.price}eur</th>
           </tr>
         </table>
         <h4>Catalog</h4>
