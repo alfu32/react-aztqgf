@@ -88,8 +88,6 @@ export function ExHttp() {
                 </td>
                 <td>
                   <button onClick={() => removeProductFromCart(item)}>-</button>
-                </td>
-                <td>
                   <button onClick={() => increaseQuantity(item)}>+</button>
                 </td>
               </tr>
