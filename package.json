@@ -16,5 +16,6 @@
   },
   "devDependencies": {
     "react-scripts": "latest"
-  }
+  },
+  "c": "d"
 }
