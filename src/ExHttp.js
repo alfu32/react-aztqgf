@@ -15,6 +15,17 @@ export function ExHttp() {
     };
     setCart(newCart);
   };
+  const removeProductFromCart = (item) => {
+    const newCart = { ...cart };
+    if (newCart[item.catalogItem.id].quantity > 1) {
+      newCart[item.catalogItem.id].quantity -= 1;
+    } else {
+      if (confirm(`remove ${item.catalogItem.productName} from cart ?`)) {
+        delete newCart[item.catalogItem.id];
+      }
+    }
+    setCart(newCart);
+  };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -39,10 +50,28 @@ export function ExHttp() {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
+    let total = Object.values(cart).reduce(
+      (acc, v, i, a) => {
+        acc.pcs += v.quantity;
+        acc.price += v.quantity * v.catalogItem.unitPrice;
+        return acc;
+      },
+      { pcs: 0, price: 0, avg: 0 }
+    );
+    total.avg = new Number(total.price / (total.pcs || 1)).toFixed(2);
     return (
       <>
         <h4>Cart</h4>
         <table className="table">
+          <tr className="row" key={'00'}>
+            <th className="cell">productName</th>
+            <th className="cell">unitPrice[eur]</th>
+            <th className="cell">quantity[pcs]</th>
+            <th className="cell">total[eur]</th>
+            <th>
+              <button onClick={() => addProductToCart(item)}>empty</button>
+            </th>
+          </tr>
           {Object.values(cart).map((item) => (
             <>
               <tr className="row" key={'0' + item.catalogItem.id}>
@@ -53,11 +82,17 @@ export function ExHttp() {
                   {item.quantity * item.catalogItem.unitPrice}eur
                 </td>
                 <td>
-                  <button onClick={() => addProductToCart(item)}>remove</button>
+                  <button onClick={() => removeProductFromCart(item)}>-</button>
                 </td>
               </tr>
             </>
           ))}
+          <tr>
+            <th>total</th>
+            <th>{total.avg}</th>
+            <th>{total.pcs}</th>
+            <th>{total.price}</th>
+          </tr>
         </table>
         <h4>Catalog</h4>
         <table className="table">
