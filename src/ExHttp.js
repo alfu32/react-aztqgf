@@ -36,6 +36,12 @@ export function ExHttp() {
       setCart([]);
     }
   };
+  const vat = (n) => {
+    return (n * 0.21).toFixed(2);
+  };
+  const noVat = (n) => {
+    return (n * 0.79).toFixed(2);
+  };
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
@@ -77,6 +83,8 @@ export function ExHttp() {
             <th className="cell">productName</th>
             <th className="cell">unitPrice[eur]</th>
             <th className="cell">quantity[pcs]</th>
+            <th className="cell">VAT ex[eur]</th>
+            <th className="cell">VAT[eur]</th>
             <th className="cell">total[eur]</th>
             <th>
               <button onClick={() => clearCart()}>empty</button>
@@ -88,6 +96,12 @@ export function ExHttp() {
                 <td className="cell">{item.catalogItem.productName}</td>
                 <td className="cell">{item.catalogItem.unitPrice}eur</td>
                 <td className="cell">{item.quantity}pcs</td>
+                <td className="cell">
+                  {noVat(item.quantity * item.catalogItem.unitPrice)}eur
+                </td>
+                <td className="cell">
+                  {vat(item.quantity * item.catalogItem.unitPrice)}eur
+                </td>
                 <td className="cell">
                   {item.quantity * item.catalogItem.unitPrice}eur
                 </td>
@@ -102,6 +116,8 @@ export function ExHttp() {
             <th>total</th>
             <th>{total.avg}eur/pc</th>
             <th>{total.pcs}pcs</th>
+            <th>{noVat(total.price)}eur</th>
+            <th>{vat(total.price)}eur</th>
             <th>{total.price}eur</th>
           </tr>
         </table>
